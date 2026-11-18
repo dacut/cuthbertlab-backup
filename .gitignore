@@ -1,0 +1,22 @@
+# Compiled files and executables.
+/debug
+/target
+
+# Backup files
+**/*.rs.bk
+**/~
+
+# Coverage reports
+**/*.cov
+**/*.lcov
+
+# MSVC Windows builds of rustc generate these, which store debugging information
+*.pdb
+
+# Text editor directories
+/.idea
+/.vscode
+*.code-workspace
+
+# MacOS directory attributes
+.DS_Store

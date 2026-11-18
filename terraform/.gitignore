@@ -1,0 +1,9 @@
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+tf.plan
+crash.log
+# Local overrides; may contain an email address.
+terraform.tfvars
+*.auto.tfvars

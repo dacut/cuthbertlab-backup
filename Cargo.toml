@@ -1,0 +1,38 @@
+[package]
+name = "cuthbertlab-backup"
+version = "0.1.0"
+edition = "2024"
+description = "AWS Lambda function that backs up every repository in a GitHub organization to S3"
+publish = false
+
+# The backup function (this package) and the website's directory listing
+# function (listing/). Both are built, tested and linted together.
+[workspace]
+members = ["listing"]
+default-members = [".", "listing"]
+
+[dependencies]
+anyhow = "1"
+aws-config = { version = "1", features = ["behavior-version-latest"] }
+aws-sdk-s3 = "1"
+aws-sdk-ssm = "1"
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+clap = { version = "4", features = ["derive", "env"] }
+flate2 = "1"
+futures = "0.3"
+gix = { version = "0.90", default-features = false, features = ["blocking-http-transport-reqwest-rust-tls", "parallel", "sha1"] }
+lambda_runtime = "1"
+regex = "1"
+reqwest = { version = "0.13", default-features = false, features = ["rustls", "http2", "json", "gzip", "stream"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+sha2 = "0.11"
+tempfile = "3"
+tokio = { version = "1", features = ["fs", "io-util", "macros", "rt-multi-thread", "sync", "time"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["fmt", "json", "env-filter"] }
+
+[profile.release]
+lto = "thin"
+codegen-units = 4
+strip = true
